@@ -1,0 +1,30 @@
+thinking architecture like
+/
+    models.py
+    controller.py
+    view_cli.py
+    runner.py
+    tests/
+        test_cases.py
+    data/
+        agent_blah.json
+        scenario_doof.json
+
+contoller holds onto the agent objects, any state relevant stuff, methods for updating state
+view_cli is the file that interprets command line inputs and displays relevant state data
+runner orchestrates the two and/or runs test scenarios
+
+
+user stories:
+user can have the program tell which agent is currently the focus
+user can be summarized conditions for agents
+user can see health for agents
+user can log attacks or actions by agents to other agents
+possible/common conditions include restrained, invisible, concentrating, grappled, prone, transformed, hasted
+user will be notified that an action has changed or triggered a response from an agent
+
+test file architecture for test discovery
+    https://stackoverflow.com/questions/1896918/running-unittest-with-typical-test-directory-structure
+
+
+agents
