@@ -37,3 +37,10 @@ class TestAgentProperties(unittest.TestCase):
             len(self.manual_agent.conditions) , 1
             )
 
+    def testAgentFromJSON(self):
+        json_agent = Agent.from_json_blob({"name":"blobbert", "max_hp":12})
+        self.assertEqual(
+            json_agent.max_hp , 12
+            )
+
+

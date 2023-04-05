@@ -28,3 +28,10 @@ test file architecture for test discovery
 
 
 agents
+
+str 8
+dex 18
+con 12
+int 13
+wis 10
+cha 16

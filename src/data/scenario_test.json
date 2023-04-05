@@ -1,0 +1,26 @@
+{
+    "agents": [
+        {
+            "name": "faldo baggins",
+            "max_hp": 100,
+            "conditions":[
+                {
+                    "name": "deathless"
+                }
+            ]
+        },
+        {
+            "name": "mr. nougat",
+            "max_hp": 100,
+            "conditions":[
+                {
+                    "name": "hasted",
+                    "duration": 10
+                },
+                {
+                    "name": "concentration"
+                }
+            ]
+        }
+    ]
+}
