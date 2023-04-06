@@ -21,8 +21,10 @@ class Agent():
         self.conditions = conditions
         self.order_number = order_number
         self.alerts = []
+        self.active = False
 
     def turn_end(self):
+        self.active = False
         for condition in self.conditions:
             if condition.duration == None:
                 continue

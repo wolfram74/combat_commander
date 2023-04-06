@@ -1,5 +1,6 @@
 import json
 from collections import defaultdict
+import time
 ##
 from code.models import Agent
 
@@ -17,7 +18,7 @@ class Controller():
         self.order_agents()
         self.round_number = 1
         self.turn_number = 0
-        self.active_agents = self.agents_by_order[1]
+        self.turn_start_time = time.time()
 
     def damaged(self, subject_id, damage, object_id=None):
         self.agents_by_id[subject_id].damaged(damage)
@@ -35,6 +36,10 @@ class Controller():
             key=lambda ag: ag.order_number )
         for agent in self.agents:
             self.agents_by_order[agent.order_number].append(agent)
+        self.active_agents = self.agents_by_order[1]
+        for agent in self.active_agents:
+            agent.active=True
+
 
     def set_new_order(self, ID_list):
         #elements in ID_list might be an int, or a list of ints for agents that share a turn
@@ -64,6 +69,9 @@ class Controller():
             self.turn_number = 0
             self.round_number += 1
         self.active_agents = self.agents_by_order[possible_turns[self.turn_number]]
+        for agent in self.active_agents:
+            agent.active=True
+
 
 
 
