@@ -47,6 +47,21 @@ class Agent():
             self.alerts.append('%s must make concentration check' % self.name)
 
 
+    def __str__(self):
+        template = "{active} {id:=3d}|{name:25}|{max_hp:=3d}/{current_hp:=3d}"
+        if len(self.conditions) > 0:
+            template += '\n' + (' '*10)
+            for condition in self.conditions:
+                template += str(condition)+' | '
+        act_val = ">>" if self.active else "  "
+        return template.format(**{
+            "active":act_val,
+            "id":self.ID,
+            "name":self.name,
+            "max_hp":self.max_hp,
+            "current_hp":self.current_hp
+            })
+
 
 class Condition():
     @classmethod
@@ -57,6 +72,11 @@ class Condition():
     def __init__(self, name, duration = None):
         self.name = name
         self.duration = duration
+
+    def __str__(self):
+        if self.duration:
+            return "{name} ({dur:=3d})".format(name=self.name, dur=self.duration)
+        return self.name
 
 if __name__ == '__main__':
     main()

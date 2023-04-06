@@ -29,10 +29,5 @@ test file architecture for test discovery
 
 agents
 
-str 8
-dex 18
-con 12
-int 13
-wis 10
-cha 16
-
+todo:
+    get scenario loading set up so it can be recursive, a scenario pointing to other scenarios and so on

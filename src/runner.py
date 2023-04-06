@@ -1,9 +1,48 @@
+import sys
+
 from code import view_cli, controller
 
-def main():
+def demo():
     current_session = controller.Controller(scenario = './data/scenario_test_ordered.json')
     view_cli.controller_summary(current_session)
+    print('1 damaged 14')
+    view_cli.string_parser(current_session, '1 damaged 14')
+    print('next')
+    view_cli.string_parser(current_session, 'next')
+    view_cli.controller_summary(current_session)
+    print('2 damaged 3')
+    view_cli.string_parser(current_session, '2 damaged 3')
+    view_cli.flash_alerts(current_session)
+    print('next')
+    view_cli.string_parser(current_session, 'next')
+    view_cli.controller_summary(current_session)
+    print('1 add_condition transformed 5')    
+    view_cli.string_parser(current_session, '1 add_condition transformed 5')
+    print('1 add_condition grappled')    
+    view_cli.string_parser(current_session, '1 add_condition grappled')
+    print('next')
+    view_cli.string_parser(current_session, 'next')
+    view_cli.controller_summary(current_session)
+
+def main(scenario_address):
+    try:
+        current_session = controller.Controller(scenario = scenario_address)
+    except:
+        print(scenario_address)    
+        print("couldn't find anything there")    
+
+    view_cli.controller_summary(current_session)
+    while True:
+        cmd_str = input('command: ')
+        view_cli.string_parser(current_session, cmd_str)
+
+
+
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv)==1:
+        demo()
+        exit()
+    main(sys.argv[1])
+    # print(sys.argv)
     

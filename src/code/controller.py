@@ -24,6 +24,9 @@ class Controller():
         self.agents_by_id[subject_id].damaged(damage)
         self.alert_cleanup()
 
+    def add_condition(self, subject_id, condition):
+        self.agents_by_id[subject_id].add_condition(condition)
+
     def alert_cleanup(self):
         for agent in self.agents:
             self.alerts+=agent.alerts
