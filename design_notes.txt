@@ -31,3 +31,7 @@ agents
 
 todo:
     get scenario loading set up so it can be recursive, a scenario pointing to other scenarios and so on
+    rework data structure of turn ordering to be strict list instead of dumb dict
+    rework input parser to be dict pointing to functions
+        use key vals to auto generate help menu
+    set up inverse functions

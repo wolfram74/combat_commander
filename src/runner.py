@@ -3,26 +3,31 @@ import sys
 from code import view_cli, controller
 
 def demo():
-    current_session = controller.Controller(scenario = './data/scenario_test_ordered.json')
+    current_session = controller.Controller(scenario = './data/demo.json')
     view_cli.controller_summary(current_session)
     print('1 damaged 14')
     view_cli.string_parser(current_session, '1 damaged 14')
     print('next')
     view_cli.string_parser(current_session, 'next')
-    view_cli.controller_summary(current_session)
     print('2 damaged 3')
     view_cli.string_parser(current_session, '2 damaged 3')
     view_cli.flash_alerts(current_session)
     print('next')
     view_cli.string_parser(current_session, 'next')
-    view_cli.controller_summary(current_session)
     print('1 add_condition transformed 5')    
-    view_cli.string_parser(current_session, '1 add_condition transformed 5')
+    view_cli.string_parser(current_session, '1 add_condition transformed 3')
     print('1 add_condition grappled')    
     view_cli.string_parser(current_session, '1 add_condition grappled')
     print('next')
     view_cli.string_parser(current_session, 'next')
-    view_cli.controller_summary(current_session)
+    # view_cli.string_parser(current_session, 'next')
+    # view_cli.string_parser(current_session, 'next')
+    # view_cli.string_parser(current_session, 'next')
+    # view_cli.string_parser(current_session, 'next')
+    # view_cli.string_parser(current_session, 'next')
+    # view_cli.string_parser(current_session, 'next')
+    # view_cli.string_parser(current_session, 'next')
+    # view_cli.string_parser(current_session, 'next')
 
 def main(scenario_address):
     try:
