@@ -38,7 +38,11 @@ def main(scenario_address):
     view_cli.controller_summary(current_session)
     while True:
         cmd_str = input('command: ')
-        view_cli.string_parser(current_session, cmd_str)
+        try:
+            view_cli.string_parser(current_session, cmd_str)
+        except:
+            print(cmd_str, "Well dang, that broke something")
+        view_cli.flash_alerts(current_session)
 
 
 

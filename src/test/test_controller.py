@@ -44,7 +44,7 @@ class TestController(unittest.TestCase):
         self.assertTrue(len(self.loaded_scenario.alerts)>0)
 
     def testAgentsHaveOrder(self):
-        self.assertEqual(self.loaded_scenario2.agents_by_order[1][0].name, 'punch kicksmith')
+        self.assertEqual(self.loaded_scenario2.agents_by_order[0][0].name, 'punch kicksmith')
 
     def testSimpleOrderingCanBeSpecified(self):
         new_order = deque([
@@ -56,7 +56,7 @@ class TestController(unittest.TestCase):
             new_order.rotate()
             self.loaded_scenario2.set_new_order(new_order)
             self.assertEqual(
-                self.loaded_scenario2.agents_by_order[1][0].name, 
+                self.loaded_scenario2.agents_by_order[0][0].name, 
                 self.loaded_scenario2.agents_by_id[new_order[0]].name
                 )
 
@@ -69,7 +69,7 @@ class TestController(unittest.TestCase):
             self.loaded_scenario2.agents[2].ID   
         ]
         self.loaded_scenario2.set_new_order(new_order)
-        self.assertEqual(len(self.loaded_scenario2.agents_by_order[1]), 2)
+        self.assertEqual(len(self.loaded_scenario2.agents_by_order[0]), 2)
 
     def testHasCurrentActiveAgent(self):
         self.assertEqual(len(self.loaded_scenario2.active_agents),1)

@@ -30,6 +30,8 @@ class Agent():
                 continue
             if condition.duration > 0:
                 condition.duration -= 1
+            if condition.duration == 0:
+                self.alerts.append('%s has ended' % condition.name)
         self.conditions = list(filter(
             lambda x: x.duration != 0,
             self.conditions
@@ -51,7 +53,7 @@ class Agent():
 
 
     def __str__(self):
-        template = "{active} {id:=3d}|{name:25}|{max_hp:=3d}/{current_hp:=3d}"
+        template = "{active} {id:=3d}|{name:25}|{current_hp:=3d}/{max_hp:=3d}"
         if len(self.conditions) > 0:
             template += '\n' + (' '*10)
             for condition in self.conditions:

@@ -33,13 +33,17 @@ class Controller():
             agent.alerts = []
 
     def order_agents(self):
-        self.agents_by_order = defaultdict(list)
+        self.agents_by_order = [[]]
         self.agents = sorted(
             self.agents, 
             key=lambda ag: ag.order_number )
+        lowest = self.agents[0].order_number
         for agent in self.agents:
-            self.agents_by_order[agent.order_number].append(agent)
-        self.active_agents = self.agents_by_order[1]
+            if agent.order_number > lowest:
+                self.agents_by_order.append([])
+                lowest = agent.order_number
+            self.agents_by_order[-1].append(agent)
+        self.active_agents = self.agents_by_order[0]
         for agent in self.active_agents:
             agent.active=True
 
@@ -48,7 +52,7 @@ class Controller():
         #elements in ID_list might be an int, or a list of ints for agents that share a turn
         agents_modified = set()
         for index, agent_id in enumerate(ID_list):
-            order = index+1
+            order = index
             if type(agent_id) == int:
                 self.agents_by_id[agent_id].order_number = order
                 agents_modified.add(agent_id)
@@ -67,11 +71,11 @@ class Controller():
         for agent in self.active_agents:
             self.agents_by_id[agent.ID].turn_end()
         self.turn_number += 1
-        possible_turns = list(self.agents_by_order.keys())
-        if self.turn_number == len(possible_turns):
+        possible_turns = len(self.agents_by_order)
+        if self.turn_number == possible_turns:
             self.turn_number = 0
             self.round_number += 1
-        self.active_agents = self.agents_by_order[possible_turns[self.turn_number]]
+        self.active_agents = self.agents_by_order[self.turn_number]
         for agent in self.active_agents:
             agent.active=True
 

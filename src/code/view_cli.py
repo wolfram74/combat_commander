@@ -1,13 +1,16 @@
 import time
 import sys
-import curses
+import os
 ##
 from code import controller, models
+
+def clear():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 def controller_summary(controller):
     # always show: ID, name, max/current health
     # "{}"
-    print("====")
+    print("====="*6)
     header_line = '   ID | name                    | health | Round %d' % controller.round_number
     print(header_line)
     for tranche_id in controller.agents_by_order.keys():
@@ -17,13 +20,17 @@ def controller_summary(controller):
         for agent in tranche:
             # agent = controller.agents_by_id[agent_id]
             print(agent)
-    print("====")
+    print("====="*6)
     # print("=====\nfarts\n=====")
     return 
 
 def flash_alerts(controller):
+    if len(controller.alerts) == 0:
+        return
+    print("*****"*6)
     for alert in controller.alerts:
         print(alert)
+    print("*****"*6)
     controller.alerts = []
 
 def string_parser(controller, cmd_string):
@@ -32,8 +39,11 @@ def string_parser(controller, cmd_string):
         controller.turn_end()
         controller_summary(controller)
         return
-    if split_string[0]=='summary':
+    if split_string[0] in ('summary', 'ls'):
         controller_summary(controller)
+        return
+    if split_string[0] in ('cls', 'clear'):
+        clear()
         return
     if split_string[0]=='exit':
         exit()
@@ -63,7 +73,7 @@ def string_parser(controller, cmd_string):
             condition
             )
         return
-
+    print(cmd_string, "didn't trigger any command flags")
 
 def main():
     tally = 0
