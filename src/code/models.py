@@ -43,7 +43,10 @@ class Agent():
 
     def damaged(self, damage):
         self.current_hp -= damage
+
         if 'concentration' in [cond.name for cond in self.conditions]:
+            if damage < 0:
+                return
             self.alerts.append('%s must make concentration check' % self.name)
 
 

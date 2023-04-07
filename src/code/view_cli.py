@@ -46,6 +46,12 @@ def string_parser(controller, cmd_string):
             int(split_string[2])
             )
         return
+    if split_string[1] == 'healed':
+        controller.damaged(
+            int(split_string[0]),
+            -int(split_string[2])
+            )
+        return
     if split_string[1] == 'add_condition':
         subject_id = int(split_string[0])
         duration = None
@@ -73,3 +79,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

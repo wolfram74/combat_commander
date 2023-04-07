@@ -5,7 +5,7 @@
             "max_hp": 100,
             "conditions":[
                 {
-                    "name": "deathless"
+                    "name": "granola_enhanced"
                 }
             ]
         },
