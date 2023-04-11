@@ -26,11 +26,11 @@ valid commands are
 
 The scenarios are stored as JSON files for ease of editability and loading. If needed, a variety of JSON editors online exist that will [check syntax](http://json.parser.online.fr/). To build a scenario from other scenario files, list them in the `files` field, giving their address relative to the file it's being loaded from. For example:
 
-`
+```
 data/
     main_scenario.json
     sub_scenario.json
-`
+```
 to load `sub_scenario.json` from `main_scenario.json` you would have the field  `"files":["./sub_scenario.json"]` in `main_scenario.json`
 
 
