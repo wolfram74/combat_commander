@@ -3,7 +3,7 @@ import sys
 from code import view_cli, controller
 
 def demo():
-    current_session = controller.Controller(scenario = './data/demo.json')
+    current_session = controller.Controller(scenario = './data/scenario_test_recursed.json')
     view_cli.controller_summary(current_session)
     # input()
     print('1 damaged 14')
@@ -27,8 +27,6 @@ def demo():
     # input()
     print('next')
     view_cli.string_parser(current_session, 'next')
-    print('set_order 1 3 2')
-    print('ID order_position NEW_POSITION')
     print('help')
     view_cli.string_parser(current_session, 'help')
 

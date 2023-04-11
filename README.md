@@ -12,9 +12,25 @@ This will start a session populated with agents featuring at least unique IDs an
 
 valid commands are 
 - `next` to advance to the next agents turn.
-- `id damaged amount` to deal some amount of damage to a given agent
-- `id add_condition name (duration)` to apply a condition to a given agent with an optional duration, conditions with durations will be automatically removed from agents when the duration reaches 0.
-<!-- -`order list_of_ids` the list of ids should be space separated to be given unique turns, or comma separated to give shared turns. Unspecified ids will be placed last. -->
+- `summary` or `ls` will display the current scenario status `>>` indicates agents whose turn it currently is.
+- `clear` or `cls` clears the screen of content
+- `help` lists valid commands
+- `ID damaged AMOUNT` to deal some amount of damage to a given agent
+- `ID healed AMOUNT` to heal some amount of damage to a given agent
+- `ID add_condition NAME DURATION` to apply a condition to a given agent with an optional duration, conditions with durations will be automatically removed from agents when the duration reaches 0 and an alert will flash.
+- `ID remove_condition NAME` to remove a condition from a given agent.
+- `set_order LIST_OF_IDS` the list of ids will interpert space separated IDs as having their own turn, while comma separated IDs will have a shared turn. Unspecified IDs will be placed last.
+- `exit` ends current session
+- `exit` or `end_session` ends current session
 
-The scenarios are stored as JSON files for ease of editability and loading. If needed, a variety of JSON editors online exist that will [check syntax](http://json.parser.online.fr/)
+
+The scenarios are stored as JSON files for ease of editability and loading. If needed, a variety of JSON editors online exist that will [check syntax](http://json.parser.online.fr/). To build a scenario from other scenario files, list them in the `files` field, giving their address relative to the file it's being loaded from. For example:
+
+`
+data/
+    main_scenario.json
+    sub_scenario.json
+`
+to load `sub_scenario.json` from `main_scenario.json` you would have the field  `"files":["./sub_scenario.json"]` in `main_scenario.json`
+
 
