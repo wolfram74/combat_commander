@@ -1,0 +1,14 @@
+{
+    "agents": [
+        {
+            "name": "tokka",
+            "max_hp": 20,
+            "order_number": 4
+        },
+        {
+            "name": "razor",
+            "max_hp": 20,
+            "order_number": 4
+        },
+    ]
+}

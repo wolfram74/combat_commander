@@ -9,6 +9,7 @@ from code.controller import Controller
 base_directory = os.path.dirname(__file__)
 test_scenario1 = os.path.join(base_directory, '../data/scenario_test.json')
 test_scenario2 = os.path.join(base_directory, '../data/scenario_test_ordered.json')
+test_scenario3 = os.path.join(base_directory, '../data/scenario_test_recursed.json')
 
 class TestController(unittest.TestCase):
     def setUp(self):
@@ -23,6 +24,12 @@ class TestController(unittest.TestCase):
             )
         self.assertTrue(
             len(loaded_scenario.agents[0].conditions)>0
+            )
+
+    def testCanLoadRecursively(self):
+        loaded_scenario = Controller(scenario = test_scenario3)
+        self.assertTrue(
+            len(loaded_scenario.agents)>4
             )
 
     def testGivesAgentsIDs(self):
@@ -82,4 +89,10 @@ class TestController(unittest.TestCase):
         for i in range(9):
             self.loaded_scenario2.turn_end()
         self.assertLess(1,self.loaded_scenario2.round_number)
+
+    def testRemoveCondition(self):
+        for i in range(9):
+            self.loaded_scenario2.turn_end()
+        self.assertLess(1,self.loaded_scenario2.round_number)
+
 

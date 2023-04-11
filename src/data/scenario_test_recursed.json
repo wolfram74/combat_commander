@@ -1,0 +1,36 @@
+{
+    "agents": [
+        {
+            "name": "glambus the druid",
+            "max_hp": 100,
+            "conditions":[
+                {
+                    "name": "deathless"
+                }
+            ]
+        },
+        {
+            "name": "stab darkington",
+            "max_hp": 100,
+            "order_number": 2
+        },
+        {
+            "name": "punch kicksmith",
+            "max_hp": 120,
+            "order_number":1,
+            "conditions":[
+                {
+                    "name": "hasted",
+                    "duration": 10
+                },
+                {
+                    "name": "concentration"
+                }
+            ]
+        }
+    ],
+    "files":[
+        "scenario_test_cronies.json"
+    ]
+}
+

@@ -19,7 +19,7 @@ def demo():
     print('next')
     view_cli.string_parser(current_session, 'next')
     # input()
-    print('1 add_condition transformed 5')    
+    print('1 add_condition transformed 3')    
     view_cli.string_parser(current_session, '1 add_condition transformed 3')
     # input()
     print('1 add_condition grappled')    
@@ -27,6 +27,11 @@ def demo():
     # input()
     print('next')
     view_cli.string_parser(current_session, 'next')
+    print('set_order 1 3 2')
+    print('ID order_position NEW_POSITION')
+    print('help')
+    view_cli.string_parser(current_session, 'help')
+
 
 def main(scenario_address):
     try:
