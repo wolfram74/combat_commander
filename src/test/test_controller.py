@@ -62,6 +62,7 @@ class TestController(unittest.TestCase):
         for i in range(3):
             new_order.rotate()
             self.loaded_scenario2.set_new_order(new_order)
+            print(new_order)
             self.assertEqual(
                 self.loaded_scenario2.agents_by_order[0][0].name, 
                 self.loaded_scenario2.agents_by_id[new_order[0]].name
@@ -77,6 +78,14 @@ class TestController(unittest.TestCase):
         ]
         self.loaded_scenario2.set_new_order(new_order)
         self.assertEqual(len(self.loaded_scenario2.agents_by_order[0]), 2)
+
+    def testDefaultPositionInOrder(self):
+        self.loaded_scenario2.set_new_order(
+            [self.loaded_scenario2.agents[0].ID]
+            )
+        self.assertGreater(
+            len(self.loaded_scenario2.agents_by_order[-1]), 1
+            )
 
     def testHasCurrentActiveAgent(self):
         self.assertEqual(len(self.loaded_scenario2.active_agents),1)

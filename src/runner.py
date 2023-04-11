@@ -36,6 +36,7 @@ def main(scenario_address):
         current_session = controller.Controller(scenario = scenario_address)
     except:
         print(scenario_address)    
+        print(err)    
         print("couldn't find anything there")    
 
     view_cli.controller_summary(current_session)
@@ -43,8 +44,10 @@ def main(scenario_address):
         cmd_str = input('command: ')
         try:
             view_cli.string_parser(current_session, cmd_str)
-        except:
+        except Exception as err:
             print(cmd_str, "Well dang, that broke something")
+            print(err)    
+
         view_cli.flash_alerts(current_session)
 
 

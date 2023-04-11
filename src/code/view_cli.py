@@ -28,20 +28,21 @@ def flash_alerts(controller):
     controller.alerts = []
 
 #valid commands
-def view_next(controller,args):
+def view_next(controller, args):
     controller.turn_end()
     controller_summary(controller)
 
-def view_summary(controller,args):
+def view_summary(controller, args):
     controller_summary(controller)
 
-def view_clear(controller,args):
+def view_clear(controller, args):
     clear()
 
-def view_exit(controller,args):
+def view_exit(controller, args):
     exit()
+    return
 
-def view_help(controller,args):
+def view_help(controller, args):
     print('valid commands are:')
     print(', '.join(cmd_list.keys()))
 
@@ -59,6 +60,17 @@ def view_add_condition(controller, args):
     condition = models.Condition(args[2], duration)
     controller.add_condition(agent_id, condition)
 
+def view_set_order(controller, args):
+    ordering = []
+    for item in args[1:]:
+        # print(item)
+        if ',' in item:
+            ids = [int(el) for el in item.split(',')]
+            ordering.append(ids)
+            continue
+        ordering.append(int(item))
+    controller.set_new_order(ordering)
+
 cmd_list = {
     'next': view_next,
     'summary': view_summary,
@@ -72,7 +84,7 @@ cmd_list = {
     'healed': view_heal,
     'add_condition': view_add_condition,
     'remove_condition': view_summary,
-    'set_order': view_summary,
+    'set_order': view_set_order,
 }
 
 def string_parser(controller, cmd_string):
@@ -89,9 +101,6 @@ def string_parser(controller, cmd_string):
 
 def main():
     tally = 0
-    print('what the fuck is main being run for?')
-    stdscr = curses.initscr()
-    # loaded_scenario2 = Controller(scenario = test_scenario2)
 
 
 if __name__ == '__main__':

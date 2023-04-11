@@ -75,13 +75,14 @@ class Controller():
             key=lambda ag: ag.order_number )
         lowest = self.agents[0].order_number
         for agent in self.agents:
+            agent.active = False
             if agent.order_number > lowest:
                 self.agents_by_order.append([])
                 lowest = agent.order_number
             self.agents_by_order[-1].append(agent)
         self.active_agents = self.agents_by_order[0]
         for agent in self.active_agents:
-            agent.active=True
+            agent.active = True
 
 
     def set_new_order(self, ID_list):
@@ -100,7 +101,7 @@ class Controller():
         for index, agent_id in enumerate(self.agents_by_id.keys()):
             if agent_id in agents_modified:
                 continue
-            self.agents_by_id[agent_id].order_number = index+lower_bound
+            self.agents_by_id[agent_id].order_number = lower_bound+1
         self.order_agents()
 
     def turn_end(self):
