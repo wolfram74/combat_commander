@@ -11,14 +11,8 @@ class Controller():
     @classmethod
     def get_agents_from_scenario(cls, address, parent_address=None):
         agents = []
-        if 'cronies' in address:
-            print(os.path.dirname(__file__), address)
-            print(parent_address)
-            print(os.path.split(parent_address))
-            address_list = list(os.path.split(parent_address))
-            address_list[-1] = address
-            print(address_list)
-            address = os.path.join(address_list[0], address)
+        if parent_address:
+            address = os.path.join(os.path.split(parent_address)[0], address)
         with open(address, 'r') as scenario_file:
             scenario_data = json.load(scenario_file)
         if 'agents' in scenario_data:
