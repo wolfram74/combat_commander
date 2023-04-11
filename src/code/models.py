@@ -11,7 +11,10 @@ class Agent():
         return Agent(**blob)
 
 
-    def __init__(self, name, max_hp=None, conditions=[], order_number=100, **properties):
+    def __init__(self, 
+            name, max_hp=None, conditions=[], 
+            order_number=100, ID=-1,
+            **properties):
         self.name = name
         self.max_hp = max_hp
         if 'current_hp' in properties:
@@ -22,6 +25,7 @@ class Agent():
         self.order_number = order_number
         self.alerts = []
         self.active = False
+        self.ID = ID
 
     def turn_end(self):
         self.active = False

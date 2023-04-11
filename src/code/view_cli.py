@@ -9,16 +9,13 @@ def clear():
 
 def controller_summary(controller):
     # always show: ID, name, max/current health
-    # "{}"
     print("====="*6)
     header_line = '   ID | name                    | health | Round %d' % controller.round_number
     print(header_line)
     for tranche in controller.agents_by_order:
         for agent in tranche:
-            # agent = controller.agents_by_id[agent_id]
             print(agent)
     print("====="*6)
-    # print("=====\nfarts\n=====")
     return 
 
 def flash_alerts(controller):
@@ -92,11 +89,6 @@ def string_parser(controller, cmd_string):
 
 def main():
     tally = 0
-    # while True:
-    #     sys.stdout.write("\rDoing thing {time:=4d}".format(time=tally))
-    #     sys.stdout.flush()
-    #     time.sleep(1)
-    #     tally += 1
     print('what the fuck is main being run for?')
     stdscr = curses.initscr()
     # loaded_scenario2 = Controller(scenario = test_scenario2)

@@ -1,24 +1,59 @@
 import json
+import os
+import sys
 from collections import defaultdict
 import time
 ##
 from code.models import Agent
 
 class Controller():
+
+    @classmethod
+    def get_agents_from_scenario(cls, address, parent_address=None):
+        agents = []
+        if 'cronies' in address:
+            print(os.path.dirname(__file__), address)
+            print(parent_address)
+            print(os.path.split(parent_address))
+            address_list = list(os.path.split(parent_address))
+            address_list[-1] = address
+            print(address_list)
+            address = os.path.join(address_list[0], address)
+        with open(address, 'r') as scenario_file:
+            scenario_data = json.load(scenario_file)
+        if 'agents' in scenario_data:
+            for index, agent_json in enumerate(scenario_data['agents']):
+                agents.append(Agent.from_json_blob(agent_json))
+        if 'files' in scenario_data:
+            for sub_address in scenario_data['files']:
+                agents += Controller.get_agents_from_scenario(sub_address, parent_address=address)
+        return agents
+
     def __init__(self, scenario='./data/scenario_default.json'):
-        self.agents = []
-        with open(scenario, 'r') as loaded_file:
-            scenario_data = json.load(loaded_file)
+        self.agents = Controller.get_agents_from_scenario(scenario)
+        # with open(scenario, 'r') as loaded_file:
+        #     scenario_data = json.load(loaded_file)
         self.agents_by_id = {}
-        for index, agent_json in enumerate(scenario_data['agents']):
-            self.agents.append(Agent.from_json_blob(agent_json))
-            self.agents[-1].set_id(index)
-            self.agents_by_id[self.agents[-1].ID] = self.agents[-1]
+        self.set_agent_ids()
+        # for index, agent_json in enumerate(scenario_data['agents']):
+        #     self.agents.append(Agent.from_json_blob(agent_json))
+        #     self.agents[-1].set_id(index)
+        #     self.agents_by_id[self.agents[-1].ID] = self.agents[-1]
         self.alerts = []
         self.order_agents()
         self.round_number = 1
         self.turn_number = 0
         self.turn_start_time = time.time()
+
+    def set_agent_ids(self):
+        highest_id = 0
+        for agent in self.agents:
+            if agent.ID > highest_id:
+                highest_id = agent.ID
+        for index, agent in enumerate(self.agents):
+            if agent.ID == -1:
+                agent.set_id(index+1+highest_id)
+            self.agents_by_id[agent.ID] = agent
 
     def damaged(self, subject_id, damage, object_id=None):
         self.agents_by_id[subject_id].damaged(damage)
