@@ -57,10 +57,10 @@ class Controller():
         self.agents_by_id[subject_id].add_condition(condition)
 
     def remove_condition(self, subject_id, condition_name):
-        self.agents_by_id[subject_id].conditions = filter(
-            lambda cond: cond.name != condition_name,
-            self.agents_by_id[subject_id].conditions
-            )
+        self.agents_by_id[subject_id].conditions = list(filter(
+                    lambda cond: cond.name != condition_name,
+                    self.agents_by_id[subject_id].conditions
+                    ))
 
 
     def alert_cleanup(self):
