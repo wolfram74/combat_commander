@@ -20,7 +20,6 @@ class TestAgentProperties(unittest.TestCase):
             len(self.manual_agent.conditions)==0
             )
 
-
     def testAddCondition(self):
         self.assertEqual(
             len(self.manual_agent.conditions) , 1

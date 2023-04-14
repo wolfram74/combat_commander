@@ -16,7 +16,6 @@ class TestController(unittest.TestCase):
         self.loaded_scenario = Controller(scenario = test_scenario1)
         self.loaded_scenario2 = Controller(scenario = test_scenario2)
 
-
     def testCanLoadFromFile(self):
         loaded_scenario = Controller(scenario = test_scenario1)
         self.assertTrue(

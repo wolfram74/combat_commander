@@ -115,6 +115,7 @@ class Controller():
         self.active_agents = self.agents_by_order[self.turn_number]
         for agent in self.active_agents:
             agent.active=True
+        self.alert_cleanup()
 
 
 
