@@ -30,8 +30,15 @@ test file architecture for test discovery
 agents
 
 todo:
+    add doc strings to each function in view so "help" can provide syntax advice as well
+    include agents identifier when conditions end
+    remove_condition fix
+
+todones:
     Xget scenario loading set up so it can be recursive, a scenario pointing to other scenarios and so on
     Xrework data structure of turn ordering to be strict list instead of dumb dict
     Xrework input parser to be dict pointing to functions
         use key vals to auto generate help menu
     Xset up inverse functions
+
+Peter, I am a volunteer at a job hunting networking group. Connect with  me off-line.  mcposton.jtsg@outlook.com.

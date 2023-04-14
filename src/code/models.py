@@ -36,7 +36,7 @@ class Agent():
                 condition.duration -= 1
             if condition.duration == 0:
                 print('condition ended')
-                self.alerts.append('%s has ended' % condition.name)
+                self.alerts.append('%s has ended for %s' % (condition.name, self.name))
         self.conditions = list(filter(
             lambda x: x.duration != 0,
             self.conditions

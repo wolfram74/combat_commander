@@ -60,6 +60,11 @@ def view_add_condition(controller, args):
     condition = models.Condition(args[2], duration)
     controller.add_condition(agent_id, condition)
 
+def view_remove_condition(controller, args):
+    agent_id = int(args[0])
+    controller.remove_condition(agent_id, args[-1])
+
+
 def view_set_order(controller, args):
     ordering = []
     for item in args[1:]:
@@ -83,7 +88,7 @@ cmd_list = {
     'damaged': view_damage,
     'healed': view_heal,
     'add_condition': view_add_condition,
-    'remove_condition': view_summary,
+    'remove_condition': view_remove_condition,
     'set_order': view_set_order,
 }
 
@@ -93,9 +98,11 @@ def string_parser(controller, cmd_string):
     if split_string[0] in cmd_list:
         cmd_list[split_string[0]](controller, split_string)
         return
-    if split_string[1] in cmd_list:
-        cmd_list[split_string[1]](controller, split_string)
-        return
+
+    if len(split_string) != 1:
+        if split_string[1] in cmd_list:
+            cmd_list[split_string[1]](controller, split_string)
+            return
 
     print(cmd_string, "didn't trigger any command flags")
 
