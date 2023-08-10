@@ -15,6 +15,7 @@ class TestController(unittest.TestCase):
     def setUp(self):
         self.loaded_scenario = Controller(scenario = test_scenario1)
         self.loaded_scenario2 = Controller(scenario = test_scenario2)
+        self.loaded_scenario3 = Controller(scenario = test_scenario3)
 
     def testCanLoadFromFile(self):
         loaded_scenario = Controller(scenario = test_scenario1)
@@ -104,3 +105,8 @@ class TestController(unittest.TestCase):
         self.assertLess(1,self.loaded_scenario2.round_number)
 
 
+    def testOnlyOneGainsCondition(self):
+        self.loaded_scenario3.set_new_order([4, 3, 5, 2, 1])
+        condition = Condition('concentration', None)
+        self.loaded_scenario3.add_condition(5, condition)
+        self.assertEqual([], self.loaded_scenario3.agents_by_id[4].conditions)
